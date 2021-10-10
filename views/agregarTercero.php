@@ -1,4 +1,5 @@
 <?php
+    include('../config/urlsession.php');
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $mysqli = new mysqli('localhost', 'desarrollo_web', 'desarrollo', 'banco');
         if ($mysqli -> connect_errno) {
