@@ -21,9 +21,10 @@
           echo "Errno: " . $mysqli -> connect_errno . "\n";
           exit;
       }
+      $iduser = $_SESSION['idusuario'];
       $terceros = $mysqli -> query("SELECT t.iddestino, t.alias, t.monto_max, t.cantidad_max, t.transferencias 
                                     from usuario_tercero t, usuario u where u.idUsuario = t.idorigen and
-                                    t.idorigen = 1"); // Cambiar por usuario conectado
+                                    t.idorigen = '$iduser'"); // Cambiar por usuario conectado
     ?>
 </head>
 
@@ -99,7 +100,8 @@
                                         <label for="cuentaO">Cuenta origen</label>
                                         <select class="form-control" required id="cuentaO" name="cuentaO">
                                             <?php
-                                            $cuentas = $mysqli -> query("SELECT * from cuenta_usuario where idUsuario = 1"); // Cambiar por usuario conectado
+                                            $iduser = $_SESSION['idusuario'];
+                                            $cuentas = $mysqli -> query("SELECT * from cuenta_usuario where idUsuario = '$iduser'"); // Cambiar por usuario conectado
                                             if ($cuentas) {
                                               if ($cuentas->num_rows != 0) {
                                                 $cuentas->data_seek(0);
@@ -135,6 +137,10 @@
                                         </select>
                                     </div>
                                     <div class="form-group">
+                                        <?php
+                                          $iduserVal = $_SESSION['idusuario'];
+                                          printf('<input type="number" class="form-control" value="" id="iduser" name="'.$iduserVal.'" style="display: none !important;">')
+                                        ?>
                                         <label for="montoT">Monto</label>
                                         <input type="number" class="form-control" required id="montoT" name="montoT"
                                             placeholder="Ingresar monto">
@@ -159,8 +165,9 @@
                                       printf("<p>No tienes ninguna cuenta creada</p>");
                                     }
                                   }
+                                  $iduser = $_SESSION['idusuario'];
                                   $operaciones = $mysqli -> query("SELECT o.`idOperacion`,  DATE_FORMAT(o.`fecha`, '%d/%m/%y %T') fecha, o.`NoCuenta`, o.`monto`, t.`nombre`, op.`tipo`, IFNULL(o.`id_cajero`, '—') id_cajero, IFNULL(o.`id_tercero`, '—') id_tercero
-                                                 FROM `operacion` o, cuenta_usuario c, tipo_transaccion t, tipo_operacion op WHERE o.NoCuenta = c.NoCuenta and c.idUsuario = 1 
+                                                 FROM `operacion` o, cuenta_usuario c, tipo_transaccion t, tipo_operacion op WHERE o.NoCuenta = c.NoCuenta and c.idUsuario = '$iduser' 
                                                  and t.idTipoTrans = o.tipo_transaccion and op.idtipo = o.tipo_operacion order by o.idOperacion desc"); // Cambiar por usuario conectado
                                   if ($operaciones) {
                                     if ($operaciones->num_rows != 0) {
@@ -248,7 +255,7 @@
             evt.preventDefault();
             $.get('../db/consultas.php', {
                 tabla: 'usuario_tercero',
-                condiciones: `iddestino = ${$('#cuentaT').val()} and idorigen = 1` // Cambiar por usuario conectado
+                condiciones: `iddestino = ${$('#cuentaT').val()} and idorigen = ${$('#iduser').val()}` // Cambiar por usuario conectado
             }, (data) => {
                 const tercero = JSON.parse(data);
                 if (tercero.monto_max < Number($('#montoT').val())) {

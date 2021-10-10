@@ -152,8 +152,13 @@
       $email = $_POST['email']; 
       $telefono = $_POST['telefono']; 
       $dpi = $_POST['dpi']; 
-      $password = $_POST['password']; 
-      $consulta = "INSERT INTO `usuario`(`nombre`, `apellido`, `email`, `telefono`, `password`, `estado`, `dpi`, `isadmin`) VALUES ('$nombre','$apellido','$email','$telefono','$password',1,'$dpi',0)";
+      $password = $_POST['password'];
+      $isadmin = null;
+      if (isset($_POST['isadmin'])) {
+        $isadmin = 1;
+      }
+      $hash = md5(rand(0,1000));
+      $consulta = "INSERT INTO `usuario`(`nombre`, `apellido`, `email`, `telefono`, `password`, `estado`, `dpi`, `isadmin`, `hash`) VALUES ('$nombre','$apellido','$email','$telefono','$password',1,'$dpi','$isadmin','$hash')";
       mysqli_query($mysqli,$consulta); 
       // echo "datos guardados ";
     }

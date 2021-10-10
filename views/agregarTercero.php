@@ -7,7 +7,7 @@
             echo "Errno: " . $mysqli -> connect_errno . "\n";
             exit;
         }
-        $origen = 1; // Cambiar por usuario conectado
+        $origen = $_SESSION['idusuario']; // Cambiar por usuario conectado
         $cuenta = $_POST['cuenta'];
         $alias = $_POST['alias'];
         $monto = $_POST['monto'];
