@@ -19,13 +19,22 @@ if(isset($_POST['login'])) {
                 echo "<script>alert('Error: usuario y/o contraseña incorrectos!!');</script>";
             } else {
                 $result = $resultado->fetch_object();
-                print_r($result);
-                $_SESSION['idusuario'] = $result->idusuario;
-                $_SESSION['nombre'] = $result->nombre;
-                $_SESSION['apellido'] = $result->apellido;
-                $_SESSION['email'] = $result->email;
-                $_SESSION['isadmin'] = $result->isadmin;
-                header('location: ./views/panelUsuario.php');
+                
+                if($result->estado === '0') {
+                    echo "<script>alert('La cuenta no ha sido verificada ó a sido desactivada');</script>";
+                } else if($result->estado === '1') {
+                    print_r($result->estado);
+                    $_SESSION['idusuario'] = $result->idusuario;
+                    $_SESSION['nombre'] = $result->nombre;
+                    $_SESSION['apellido'] = $result->apellido;
+                    $_SESSION['email'] = $result->email;
+                    $_SESSION['isadmin'] = $result->isadmin;
+                    if($result->isadmin) {
+                        header('location: ./views/administrador.php');
+                    } else {
+                        header('location: ./views/panelUsuario.php');
+                    }
+                }
             }
 
         } else {

@@ -5,9 +5,11 @@ $url = $_SERVER["REQUEST_URI"];
 $pagina_buscada = '/index.php';
 $pagina_buscada2 = '/registrarUsuario.php';
 $pagina_isadmin = '/administrador.php';
+$pagina_cajero = '/cajero.php';
 $filter_index = strpos($url, $pagina_buscada);
 $filter_registrar = strpos($url, $pagina_buscada2);
 $filter_isadmin = strpos($url, $pagina_isadmin);
+$filter_cajero = strpos($url, $pagina_cajero);
 if(!$filter_index) {
    session_start();
 }
@@ -29,6 +31,10 @@ if(!isset($_SESSION['idusuario'])) {
             // verificar que el que trata acceder a una url admin sea administrador
             if($_SESSION['isadmin'] === null) {
                 header('location: ./panelUsuario.php');
+            }
+        } else {
+            if($_SESSION['isadmin'] && !$filter_cajero) {
+                header('location: ./administrador.php');
             }
         }
     } else {

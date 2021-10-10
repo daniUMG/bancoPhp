@@ -11,13 +11,17 @@
             <span class="fs-5"><span class="d-none d-sm-inline">Banca en Linea</span></span>
         </a>
         <ul class="nav nav-pills flex-sm-column flex-row flex-nowrap flex-shrink-1 flex-sm-grow-0 flex-grow-1 mb-sm-auto mb-0 justify-content-center align-items-center align-items-sm-start" id="menu">
-            <li class="nav-item">
-                <a href="panelUsuario.php" class="nav-link px-sm-0 px-2 text-white">
-                    <i class="fs-5 bi-house"></i><span class="ms-1 d-none d-sm-inline">Tablero</span>
-                </a>
-            </li>
             <?php
-                if($_SESSION['isadmin'] !== null){
+                if(!$_SESSION['isadmin']){
+                    printf('<li class="nav-item">
+                        <a href="panelUsuario.php" class="nav-link px-sm-0 px-2 text-white">
+                            <i class="fs-5 bi-house"></i><span class="ms-1 d-none d-sm-inline">Tablero</span>
+                        </a>
+                    </li>');
+                }
+            ?>
+            <?php
+                if($_SESSION['isadmin']){
                     printf('<li>
                         <a href="administrador.php" class="nav-link px-sm-0 px-2 text-white">
                                 <i class="fs-5 bi-speedometer2"></i><span class="ms-1 d-none d-sm-inline">Administrador</span> </a>

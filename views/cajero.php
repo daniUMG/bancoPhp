@@ -27,28 +27,6 @@
                 </div>
               </div>
               <div>
-                  <h2 class="titulo-2">Registro de Cajero:</h2>
-                  <form method="POST" action="<?php echo $_SERVER['PHP_SELF'];?>">
-                      <div class="input-group mb-3">
-                          <span class="input-group-text txtinput" id="inputGroup-sizing-default">Nombre:</span>
-                          <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name="nombre">
-                        </div>
-                        <div class="input-group mb-3">
-                          <span class="input-group-text txtinput" id="inputGroup-sizing-default">Usuario</span>
-                          <input type="email" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name="email">
-                        </div>
-                        <div class="input-group mb-3">
-                          <span class="input-group-text txtinput" id="inputGroup-sizing-default">Contraseña:</span>
-                          <input type="password" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name="password">
-                        </div>
-                        <div class="input-group mb-3">
-                          <span class="input-group-text txtinput" id="inputGroup-sizing-default">Repetir Contraseña:</span>
-                          <input type="password" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name="rpassword">
-                        </div>
-                      <button type="submit" class="btn btn-primary" name="enviar">Enviar</button>
-                    </form>
-              </div>
-              <div>
                 <h2 class="titulo-2">Realizar transaccion:</h2>
                 <form method="POST" action="<?php echo $_SERVER['PHP_SELF'];?>">
                     <div class="input-group mb-3">
@@ -88,7 +66,6 @@
   </div>
 
   <?php
-    include('../controllers/RegistroCajeroController.php');
     include('../controllers/TransaccionController.php');
   ?>
 </body>
