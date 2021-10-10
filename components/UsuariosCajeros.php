@@ -1,6 +1,6 @@
 <?php
   	include('../db/conection.php');
-    $cajeros = $conexion -> query("SELECT * from cajero"); // Cambiar por usuario conectado
+    $cajeros = $conexion -> query("SELECT * from cajero");
     if ($cajeros) {
         if ($cajeros->num_rows != 0) {
           printf("<div class='table-responsive mt-2'><table class='table'><thead>
