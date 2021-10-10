@@ -158,7 +158,7 @@
                                     if ($cuentas->num_rows != 0) {
                                       $cuentas->data_seek(0);
                                       while ($obj = $cuentas -> fetch_object()) {
-                                        printf("<p>Monto de cuenta %d - %s: <b>%d</b></p>", $obj -> NoCuenta, $obj -> NombreCuenta, $obj -> monto);
+                                        printf("<p>Monto de cuenta %d - %s: <b>Q. %d</b></p>", $obj -> NoCuenta, $obj -> NombreCuenta, $obj -> monto);
                                       }
                                     }
                                     else {
@@ -166,7 +166,7 @@
                                     }
                                   }
                                   $iduser = $_SESSION['idusuario'];
-                                  $operaciones = $mysqli -> query("SELECT o.`idOperacion`,  DATE_FORMAT(o.`fecha`, '%d/%m/%y %T') fecha, o.`NoCuenta`, o.`monto`, t.`nombre`, op.`tipo`, IFNULL(o.`id_cajero`, '—') id_cajero, IFNULL(o.`id_tercero`, '—') id_tercero
+                                  $operaciones = $mysqli -> query("SELECT o.`idOperacion`,  DATE_FORMAT(o.`fecha`, '%d/%m/%y') fecha, o.`NoCuenta`, o.`monto`, t.`nombre`, op.`tipo`, IFNULL(o.`id_cajero`, '—') id_cajero, IFNULL(o.`id_tercero`, '—') id_tercero
                                                  FROM `operacion` o, cuenta_usuario c, tipo_transaccion t, tipo_operacion op WHERE o.NoCuenta = c.NoCuenta and c.idUsuario = '$iduser' 
                                                  and t.idTipoTrans = o.tipo_transaccion and op.idtipo = o.tipo_operacion order by o.idOperacion desc"); // Cambiar por usuario conectado
                                   if ($operaciones) {
