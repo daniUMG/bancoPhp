@@ -1,5 +1,5 @@
 <?php
-  	include('../db/conection.php');
+    include('../db/conection.php');
     $cajeros = $conexion -> query("SELECT * from cajero");
     if ($cajeros) {
         if ($cajeros->num_rows != 0) {
