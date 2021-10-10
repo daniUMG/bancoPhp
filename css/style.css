@@ -1,0 +1,44 @@
+/*Globales*/
+html{
+    box-sizing: border-box;
+    scroll-snap-type: y mandatory ;
+}
+*, *:before, *:after{
+    box-sizing: inherit;
+}
+/*Header */
+.header-main{
+    display: flex;
+    justify-content: space-between;
+}
+.contenedor-login{
+    margin-top: 4rem;
+}
+.botones-login{
+    display: flex;
+    justify-content: space-around;
+}
+.btn-login{
+    width: 15rem;
+}
+.form-login{
+    margin-top: 4rem;
+    width: 60rem;
+}
+.txtinput{
+    width: 10rem;
+}
+
+.logo {
+    width: 150px;
+    height: auto;
+    margin-right: 1rem;
+}
+
+.titulo-header {
+    font-size: 24pt;
+}
+
+body {
+    background-color: #eee;
+}
