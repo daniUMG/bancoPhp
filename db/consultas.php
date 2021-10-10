@@ -1,7 +1,7 @@
 <?php
     // Devuelve la consulta en formato JSON
     if ($_SERVER["REQUEST_METHOD"] == "GET") {
-        $mysqli = new mysqli('localhost', 'root', '', 'banco');
+        $mysqli = new mysqli('localhost', 'desarrollo_web', 'desarrollo', 'banco');
         if ($mysqli -> connect_errno) {
             // La conexión falló
             echo "Lo sentimos, este sitio web está experimentando problemas.";
